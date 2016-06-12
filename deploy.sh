@@ -1,3 +1,2 @@
 #!/bin/sh
-
-rsync -avr --delete-after --delete-excluded _site/ jongbin@jongbin.com:/home/jongbin/www/blog
+rsync -rlpdoDz --force --delete --progress -e "ssh -p22" public/ jongbin@jongbin.com:/home/jongbin/www/blog

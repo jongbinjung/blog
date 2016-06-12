@@ -10,7 +10,6 @@ disqusShortname = "jongbin"
 # Enable analytics by entering your Google Analytics tracking ID
 googleAnalytics = ""
 
-
 [params]
   name = "Jongbin Jung"
   #role = "Professor of Artificial Intelligence"
@@ -30,30 +29,25 @@ googleAnalytics = ""
   sharing = true
 
   # Link custom CSS and JS assets (relative to /static/css and /static/js respectively)
-  custom_css = []
+  custom_css = ["NotoSansKR-Hestia.css"]
   custom_js  = []
 
   # Biography section.
   # Section will only be displayed if `content/home/about.md` exists.
   [params.about]
-    interests = ["Artificial Intelligence", "Computational Linguistics", "Information Retrieval"]
+    interests = ["Decision Analysis", "Heuristics", "Optimization"]
     str_interests = "Interests"
     str_education = "Education"
 
     [[params.about.education]]
-      course = "PhD in Artificial Intelligence"
-      institution = "Stanford University"
-      year = 2012
+      course = "Masters in Operations Research"
+      institution = "Yonsei University, Seoul Korea"
+      year = 2014
 
     [[params.about.education]]
-      course = "MEng in Artificial Intelligence"
-      institution = "Massachusetts Institute of Technology"
-      year = 2009
-
-    [[params.about.education]]
-      course = "BSc in Artificial Intelligence"
-      institution = "Massachusetts Institute of Technology"
-      year = 2008
+      course = "BBA in Management Science"
+      institution = "Yonsei University, Seoul Korea"
+      year = 2011
 
   # Posts section.
   # Section will only be displayed if there are posts in `content/post/`.

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications on 1024</title>
+    <link>http://blog.jongbin.com/publication/</link>
+    <description>Recent content in Publications on 1024</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016 Jongbin Jung</copyright>
+    <lastBuildDate>Wed, 01 Jul 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://blog.jongbin.com/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>An adaptively managed dynamic portfolio selection model using a time-varying investment target according to the market forecast</title>
+      <link>http://blog.jongbin.com/publication/jors-dpsm/</link>
+      <pubDate>Wed, 01 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.jongbin.com/publication/jors-dpsm/</guid>
+      <description>&lt;p&gt;Research conducted as part of &lt;em&gt;HD Lab&lt;/em&gt; at &lt;a href=&#34;https://ysb.yonsei.ac.kr&#34;&gt;Yonsei School of
+Business&lt;/a&gt;, Seoul Korea.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
