@@ -40,7 +40,12 @@ googleAnalytics = ""
     str_education = "Education"
 
     [[params.about.education]]
-      course = "Masters in Operations Research"
+      course = "PhD candidate in MS&E"
+      institution = "Stanford University"
+      #year = 2017
+
+    [[params.about.education]]
+      course = "MS in Operations Research"
       institution = "Yonsei University, Seoul Korea"
       year = 2014
 
