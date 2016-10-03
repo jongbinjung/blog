@@ -2,7 +2,7 @@
 date = "2016-06-12T15:30:57-07:00"
 image = ""
 math = false
-draft = true
+draft = false
 tags = []
 title = "testing_Noto"
 
