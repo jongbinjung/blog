@@ -1,3 +1,5 @@
-public/
-themes/
+public/*
+themes/*
+/themes
+/themes/
 blog.jongbin.com/
