@@ -1,12 +1,24 @@
 baseurl = "http://blog.jongbin.com/"
 title = "1024"
 copyright = "&copy; 2016 Jongbin Jung"
-languageCode = "ko-KR"
-paginate = 5
+paginate = 3
 theme = "base16"
+
+# Language settings
+languageCode = "ko-KR"
+hasCJKLanguage = true
+
+# Enable codefence highlighting
+PygmentsCodeFences = true
 
 # Enable comments by entering your Disqus shortname
 disqusShortname = "jongbin"
 
 # Enable analytics by entering your Google Analytics tracking ID
 googleAnalytics = ""
+
+[params]
+  author = "정종빈"
+
+[permalinks]
+  post = "/:year/:month/:title/"
