@@ -25,4 +25,7 @@ git push origin master
 
 # Come Back
 cd ..
-#rsync -rlpdoDz --force --delete --progress -e "ssh -p22" public/ jongbin@jongbin.com:/home/jongbin/www/blog
+
+
+# Older rsync-based one-liner
+# rsync -rlpdoDz --force --delete --progress -e "ssh -p22" public/ jongbin@jongbin.com:/home/jongbin/www/blog
