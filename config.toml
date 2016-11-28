@@ -15,10 +15,10 @@ PygmentsCodeFences = true
 disqusShortname = "jongbin"
 
 # Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = ""
+googleAnalytics = "UA-88094548-1"
 
 [params]
   author = "정종빈"
 
 [permalinks]
-  post = "/:year/:month/:title/"
+  post = "/:year/:month/:slug/"
