@@ -1,13 +1,14 @@
 +++
 mathjax = false
 description = ""
-draft = true
+draft = false
 disqus = true
 categories = [
   "잡담",
 ]
 date = "2016-11-26T16:25:59-08:00"
 title = "페이스북 탈출기"
+slug = "leaving-facebook"
 
 +++
 
