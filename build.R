@@ -9,10 +9,10 @@ opts_knit$set(
   )
 source <- './rsrc'
 target <- './content/post'
-r <- sapply(list.files(source), function (rmd) {
+r <- sapply(list.files(source, pattern=".[Rr]md"), function (rmd) {
   input_file <- file.path(source, rmd)
   output_file <- file.path(target, paste0(file_path_sans_ext(rmd), '.md'))
-  if (as.POSIXlt(file.mtime(input_file)) > as.POSIXlt(file.mtime(output_file))) {
+  if (!file.exists(output_file) || as.POSIXlt(file.mtime(input_file)) > as.POSIXlt(file.mtime(output_file))) {
     cat(sprintf('Rebuild %s -> %s\n', input_file, output_file))
     knitr::knit(
       input=input_file,
