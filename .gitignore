@@ -5,5 +5,5 @@ last_deploy
 
 # R-related auto-generated contents
 .Rproj.user/
-./content/post/rmd/*
-./static/img/posts/R/*
+content/post/rmd/*
+static/img/posts/R/*
