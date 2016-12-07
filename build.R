@@ -8,7 +8,7 @@ opts_knit$set(
   base.url='/img/posts/R/'
   )
 source <- './rsrc'
-target <- './content/post'
+target <- './content/post/rmd'
 r <- sapply(list.files(source, pattern=".[Rr]md"), function (rmd) {
   input_file <- file.path(source, rmd)
   output_file <- file.path(target, paste0(file_path_sans_ext(rmd), '.md'))

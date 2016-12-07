@@ -5,4 +5,5 @@ all:
 	cat $< | sed -e "s/^date:/date: \"$(shell date +%FT%R:%S%:z)\"/" > rsrc/$@
 
 clean:
+	rm -r ./content/post/rmd/*
 	rm -r ./static/img/posts/R/
