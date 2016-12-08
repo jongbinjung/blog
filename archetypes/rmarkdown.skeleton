@@ -13,3 +13,15 @@ disqus: false
 
 slug: ""
 ---
+
+```{r preamble, message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align = "center")
+knitr::opts_chunk$set(out.width = 500)
+knitr::opts_chunk$set(fig.width = 5)
+knitr::opts_chunk$set(fig.height = 5)
+knitr::opts_chunk$set(fig.retina = 2)
+
+library(tidyverse)
+theme_set(theme_bw())
+```
