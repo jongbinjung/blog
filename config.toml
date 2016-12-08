@@ -17,8 +17,11 @@ disqusShortname = "jongbin"
 # Enable analytics by entering your Google Analytics tracking ID
 googleAnalytics = "UA-88094548-1"
 
+FootnoteReturnLinkContents = "<sup>[^]</sup>"
+
 [params]
   author = "정종빈"
 
 [permalinks]
   post = "/:year/:month/:slug/"
+
