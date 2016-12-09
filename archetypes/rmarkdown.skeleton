@@ -23,5 +23,7 @@ knitr::opts_chunk$set(fig.height = 5)
 knitr::opts_chunk$set(fig.retina = 2)
 
 library(tidyverse)
+
 theme_set(theme_bw())
+theme_update(text=element_text(family="HUJingo340"))
 ```
