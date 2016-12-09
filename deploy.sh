@@ -6,7 +6,7 @@ git log --pretty=format:"%s" --since="$(cat last_deploy)" > blog.jongbin.com/ups
 date +"%F %T" > last_deploy
 
 # Build the project.
-hugo -d blog.jongbin.com  # if using a theme, replace by `hugo -t <yourtheme>`
+hugo -d blog.jongbin.com -t base16 # if using a theme, replace by `hugo -t <yourtheme>`
 
 # Go To Public folder
 cd blog.jongbin.com
