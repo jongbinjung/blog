@@ -173,7 +173,7 @@ ggplot(data=df, aes(x, y)) +
           '예제의 소제목')
 ```
 
-제목/소제목/축이름 등 `geom_*` 외의 텍스트 일번적으로 
+제목/소제목/축이름 등 `geom_*` 외의 텍스트 일반적으로 
 [`theme()`](http://docs.ggplot2.org/current/theme.html)을 통해 조율 가능하다:
 
 ```{r theme family mapping}
