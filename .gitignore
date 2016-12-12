@@ -7,3 +7,4 @@ last_deploy
 .Rproj.user/
 content/post/rmd/*
 static/img/posts/R/*
+.Rproj.user
