@@ -60,7 +60,7 @@ p <- ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
             hjust=0.5, vjust=0, nudge_x=50) +
   ggtitle('못생긴 ggplot 기본 폰트 예제',
           '실업률 변화 추이 - 자료: 통계청(http://kosis.kr/)') +
-  scale_y_continuous('실업율\n', labels=scales::percent) +
+  scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
   theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
         legend.background=element_blank(), legend.box.just='center')
@@ -80,7 +80,7 @@ q <- ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
             hjust=0.5, vjust=0, nudge_x=50, family="HUIncludemyungjo130") +
   ggtitle('이뻐진 ggplot 한글 폰트 예제',
           '실업률 변화 추이 - 자료: 통계청(http://kosis.kr/)') +
-  scale_y_continuous('실업율\n', labels=scales::percent) +
+  scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
   theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
         legend.background=element_blank(), legend.box.just='center', 
