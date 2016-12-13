@@ -2,7 +2,7 @@
 title: "연초 실업률 증가"
 description: "한국 실업률이 연초에 주기적으로 증가하는 현상에 대해 생각해보다"
 tags: ["R", "연구", "실험"]
-categories: ["정리"]
+categories: ["분석"]
 
 author: "정종빈"
 date: "2016-12-13T14:25:10-08:00"
