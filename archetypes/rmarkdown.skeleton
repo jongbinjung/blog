@@ -8,8 +8,8 @@ author: "정종빈"
 date:
 
 draft: true
-mathjax: true
-disqus: false
+mathjax: false
+disqus: true
 
 slug: ""
 ---
