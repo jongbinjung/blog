@@ -14,7 +14,7 @@ cd blog.jongbin.com
 git add -A
 
 # Commit changes.
-msg="Rebuild site `date`"
+msg="Rebuild site `date +'%F %T'`"
 if [ $# -eq 1 ]
   then msg="$1"
 fi
