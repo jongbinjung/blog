@@ -1,7 +1,7 @@
 ---
 title: "ggplot2 한글 폰트 설정"
 description: "ggplot2를 이용할 때 한글 폰트를 설정하는 방법"
-tags: ["R", "ggplot", "한글", "폰트"]
+tags: ["R", "데이터", "시각화", "ggplot", "한글", "폰트"]
 categories: ["사용설명서"]
 
 author: "정종빈"
