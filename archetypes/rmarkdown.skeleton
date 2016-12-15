@@ -1,7 +1,7 @@
 ---
 title: ""
 description: ""
-tags: ["R", ""]
+tags: ["R", "데이터", "시각화", ""]
 categories: [""]
 
 author: "정종빈"
@@ -15,7 +15,12 @@ slug: ""
 ---
 
 ```{r preamble, message=FALSE, warning=FALSE, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# Code blocks and messages/warnings are hidden by default
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+
+# Sane figure defaults
 knitr::opts_chunk$set(fig.align = "center")
 knitr::opts_chunk$set(out.width = 500)
 knitr::opts_chunk$set(fig.width = 5)
