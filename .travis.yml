@@ -23,7 +23,7 @@ after_success:
 - export rev
 - cd jongbinjung.github.io
 - git config user.email "jungjongbin86@gmail.com"
-- git config user.name "Jongbin Jung"
+- git config user.name "Travis CI"
 - git pull origin master
 - git add --all
 - git commit -m "Rebuild pages via Travis at ${rev}"
