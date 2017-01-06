@@ -1,3 +1,6 @@
+[![Build
+Status](https://travis-ci.org/jongbinjung/blog.svg?branch=master)](https://travis-ci.org/jongbinjung/blog)
+
 Source code for generating and maintaining my [blog](http://blog.jongbin.com).
 The static content of the blog is generated using `hugo`, and is hosted
 separately [here](https://github.com/jongbinjung/jongbinjung.github.io):
