@@ -30,5 +30,8 @@ after_success:
 - git push origin master
 install:
 - go get -u -v github.com/kardianos/govendor
-- go install github.com/kardianos/govendor
-- go get -u -v github.com/spf13/hugo
+- go get github.com/spf13/hugo
+- cd $GOPATH/src/github.com/spf13/hugo
+- govendor sync
+- govendor install
+- cd $HOME
