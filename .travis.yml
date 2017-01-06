@@ -34,4 +34,4 @@ install:
 - cd $GOPATH/src/github.com/spf13/hugo
 - govendor sync
 - govendor install
-- cd $HOME
+- cd -
