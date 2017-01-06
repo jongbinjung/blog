@@ -29,11 +29,6 @@ after_success:
 - git commit -m "Rebuild pages via Travis at ${rev}"
 - git push origin master
 install:
-- go get -v github.com/kardianos/govendor
-- go get -v github.com/spf13/hugo
-- cd $GOPATH/github.com/spf13/hugo
-- govendor sync
-- govendor install
-env:
-  global:
-    - ENCRYPTION_LABEL: aa0fda32b914
+- go get -u -v github.com/kardianos/govendor
+- go install github.com/kardianos/govendor
+- go get -u -v github.com/spf13/hugo
