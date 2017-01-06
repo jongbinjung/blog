@@ -1,0 +1,35 @@
+sudo: false
+language: go
+go:
+- 1.7.x
+os:
+- linux
+before_script:
+- git clone git@github.com:jongbinjung/blog.git blog
+- git clone git@github.com:jongbinjung/jongbinjung.github.io.git jongbinjung.github.io
+- git clone git@github.com:jongbinjung/hugo-base16-theme.git blog/themes/base16
+- ln -s `pwd`/jongbinjung.github.io `pwd`/blog/blog.jongbin.com
+script:
+- cd blog
+- hugo -d blog.jongbin.com -t base16
+- cd ..
+after_success:
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && rev=$(git
+  rev-parse --short HEAD)
+- export rev
+- openssl aes-256-cbc -K $encrypted_aa0fda32b914_key -iv $encrypted_aa0fda32b914_iv -in deploy_key.enc -out deploy_key -d
+- chmod 600 deploy_key
+- eval `ssh-agent -s`
+- ssh-add deploy_key
+- cd jongbinjung.github.io
+- git config user.email "jungjongbin86@gmail.com"
+- git config user.name "Jongbin Jung"
+- git pull origin master
+- git add --all
+- git commit -m "Rebuild pages via Travis at ${rev}"
+- git push origin master
+install:
+- go get -v -u github.com/spf13/hugo
+env:
+  global:
+    - ENCRYPTION_LABEL: aa0fda32b914
