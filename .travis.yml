@@ -9,9 +9,9 @@ before_script:
 - chmod 600 deploy_key
 - eval `ssh-agent -s`
 - ssh-add deploy_key
-- git clone git@github.com:jongbinjung/blog.git blog
+- git clone https://github.com/jongbinjung/blog.git blog
 - git clone git@github.com:jongbinjung/jongbinjung.github.io.git jongbinjung.github.io
-- git clone git@github.com:jongbinjung/hugo-base16-theme.git blog/themes/base16
+- git clone https://github.com/jongbinjung/hugo-base16-theme.git blog/themes/base16
 - ln -s `pwd`/jongbinjung.github.io `pwd`/blog/blog.jongbin.com
 script:
 - cd blog
