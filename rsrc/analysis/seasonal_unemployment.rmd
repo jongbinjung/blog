@@ -1,11 +1,11 @@
 ---
 title: "연초 실업률 증가"
 description: "한국 실업률이 연초에 주기적으로 증가하는 현상에 대해 생각해보다"
-tags: ["R", "연구", "실험"]
+tags: ["R", "데이터", "시각화", "연구", "실험", "실업률"]
 categories: ["분석"]
 
 author: "정종빈"
-date: "2016-12-13T14:25:10-08:00"
+date: "2016-12-18T14:25:10-08:00"
 
 draft: true
 mathjax: false
@@ -15,7 +15,9 @@ slug: "seasonal-unemployment"
 ---
 
 ```{r preamble, message=FALSE, warning=FALSE, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(fig.align = "center")
 knitr::opts_chunk$set(out.width = 500)
 knitr::opts_chunk$set(fig.width = 5)
@@ -28,14 +30,13 @@ theme_set(theme_bw())
 theme_update(text=element_text(family="HUJingo340"))
 ```
 
-얼마전 [ggplot에서 한글 폰트 관련 글]({{< relref "post/rmd/tutorials/ggplotko.md" >}})을 
-쓰면서 예제로 통계정이 발표한 월간 실업률 자료를 이용했는데, 이상한 점을 
-발견해서, 더 조사해 보고자 한다.
-
-```{r motivation, echo=FALSE, message=FALSE, warning=FALSE}
+```{r read data}
 unemploy <- read_csv('../../data/korean_unemploy.csv') %>%
   gather(date, rate, -sex) %>%
   mutate(date=as.Date(paste(date, '1'), '%Y. %m %d'), rate=rate/100) 
+
+unemploy_total <- unemploy %>%
+  filter(sex == 'total')
 
 presidents <- tibble(
   date=as.Date(c('1998/2/25', '2003/2/25', '2008/2/25', '2013/2/25')),
@@ -43,7 +44,35 @@ presidents <- tibble(
   label=c('김대중', '노무현', '이명박', '박근혜')
 )
 
-ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
+demographics <- read_csv("../../data/working_demographics.csv") %>%
+  gather(cat, value, -age, -date) %>%
+  separate(cat, c('cat', 'unit'), sep='_') %>%
+  filter(!(age %in% c('60-64', '65--')), unit == 'thousand') %>%
+  mutate(agegroup=paste0(substr(age, 1, 1), '0s')) %>%
+  group_by(agegroup, date, cat, unit) %>%
+  summarize(value=sum(value)) %>%
+  ungroup() %>%
+  spread(cat, value) %>%
+  select(-unit) %>%
+  mutate(urate=unemployed/workingpop)
+
+```
+
+```{r local functions}
+fitmodel <- function(df, formula) {
+  model <- lm(formula, data=df)
+  summary(model)
+  preds <- data.frame(predict.lm(model, df,interval='confidence'))
+  bind_cols(df, preds)
+}
+```
+
+얼마전 [ggplot에서 한글 폰트 관련 글]({{< relref "post/rmd/tutorials/ggplotko.md" >}})을 
+쓰면서 예제로 통계정이 발표한 월간 실업률 자료를 이용했는데, 통계청에서 공개한
+데이터를 있는 그대로 봐서는 별 의미가 없는 것 같아서, 더 분석해 보고자 한다.
+
+```{r motivation, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(unemploy_total, aes(x=date, y=rate)) +
   geom_vline(data=presidents, aes(xintercept=as.numeric(date)), 
              linetype='dashed', color='grey70') +
   geom_line() +
@@ -60,34 +89,83 @@ ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
         plot.subtitle = element_text(family="HUIncludemyungjo120"))
 ```
 
-이상한 점은, 다름 아닌 매년 초 (특히 2010년 이후로) 실업률이 급증가하는 
-현상이다. 
-자연적인 현상이라고 하기에는 
+우선, 당장에 알 수 있는 점은
 
-```{r init, echo=FALSE, message=FALSE, warning=FALSE}
+- 90년대말 경제위기의 영향인지, 2000년대 초반에 실업률이 상대적으로 높았다
+- 매년초에는 실업률이 오른다
+
+2000년대 초반에 아주 높았던 부분은 제외하고, 2003년 이후만 보자. 
+
+```{r filter years, echo=FALSE, message=FALSE, warning=FALSE}
+plot_presidents <- presidents %>%
+  filter(date >= '2003/1/1')
+
+plot_data <- unemploy_total %>%
+  filter(date >= '2003/1/1')
+
+```
+
+```{r by president, echo=FALSE, message=FALSE, warning=FALSE}
+plot_years <- unemploy_total %>%
+  filter(date >= '2003/1/1') %>%
+  mutate(year=format(date, '%Y'), month=months(date)) %>%
+  do(fitmodel(., formula=rate ~ year))
+
+ggplot(plot_years, aes(x=date, y=rate)) +
+  geom_vline(data=plot_presidents, aes(xintercept=as.numeric(date)), 
+             linetype='dashed', color='grey70') +
+  geom_text(data=plot_presidents, aes(x=midterm, y=0.055, label=label),
+            hjust=0.5, vjust=0, nudge_x=50, family="HUIncludemyungjo130") +
+  geom_line() +
+  geom_ribbon(aes(ymin=lwr, ymax=upr), fill='grey70', alpha=.6) +
+  geom_step(aes(y=fit), color='blue') +
+  scale_y_continuous('실업률\n', labels=scales::percent) +
+  scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
+        legend.background=element_blank(), legend.box.just='center', 
+        text=element_text(family="HUJingo320"))
+```
+
+```{r multi features, echo=FALSE, message=FALSE, warning=FALSE}
+plot_data <- unemploy_total %>%
+  filter(date >= '2003/1/1') %>%
+  mutate(year=format(date, '%Y'), month=months(date)) %>%
+  do(fitmodel(., formula=rate ~ year + month)) 
+
+ggplot(plot_data, aes(x=date, y=rate)) +
+  geom_vline(data=plot_presidents, aes(xintercept=as.numeric(date)), 
+             linetype='dashed', color='grey70') +
+  geom_text(data=plot_presidents, aes(x=midterm, y=0.055, label=label),
+            hjust=0.5, vjust=0, nudge_x=50, family="HUIncludemyungjo130") +
+  geom_line() +
+  geom_ribbon(aes(ymin=lwr, ymax=upr), fill='grey70', alpha=.6) +
+  geom_line(aes(y=fit), color='blue') +
+  scale_y_continuous('실업률\n', labels=scales::percent) +
+  scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
+        legend.background=element_blank(), legend.box.just='center', 
+        text=element_text(family="HUJingo320"))
+```
+
+```{r loess regression, echo=FALSE, message=FALSE, warning=FALSE}
+plot_data <- unemploy_total %>%
+  filter(date >= '2003/1/1')
+
+ggplot(plot_data, aes(x=date, y=rate)) +
+  geom_line() +
+  geom_smooth(formula=y ~ x, method='loess') +
+  scale_y_continuous('실업률\n', labels=scales::percent) +
+  scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
+        legend.background=element_blank(), legend.box.just='center', 
+        text=element_text(family="HUJingo320"))
+```
+
+
+
+
+
+```{r init}
 # Total employment and unemployment vary throughout the year. For example, higher unemployment in January and February isn't uncommon because of work in agriculture, construction and other seasonal industries slowing down. Also, both employment and unemployment rise every June, when students enter the labor force in search of summer jobs. Seasonally adjusted numbers also take into account seasonal hiring/layoff patterns that go along with winter and summer holidays.
-
-demographics <- read_csv("../../data/working_demographics.csv") %>%
-  gather(cat, value, -age, -date) %>%
-  separate(cat, c('cat', 'unit'), sep='_') %>%
-  filter(!(age %in% c('60-64', '65--')), unit == 'thousand') %>%
-  mutate(agegroup=paste0(substr(age, 1, 1), '0s')) %>%
-  group_by(agegroup, date, cat, unit) %>%
-  summarize(value=sum(value)) %>%
-  ungroup() %>%
-  spread(cat, value) %>%
-  select(-unit) %>%
-  mutate(urate=unemployed/workingpop)
   
-p <- ggplot(demographics, aes(date, urate)) +
-  geom_line(aes(color=agegroup)) 
-p
-
-pop_data <- demographics %>%
-  filter(cat %in% c('population', 'workingpop'))
-
-p <- ggplot(demographics, aes(date, workingpop)) +
-  geom_line(aes(color=agegroup)) +
-  scale_y_log10()
-p
 ```
