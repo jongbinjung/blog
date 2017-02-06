@@ -1,0 +1,48 @@
+---
+title: "혼내면 잘하고, 칭찬하면 못한다?"
+description: "평균 편향(Regression bias/fallacy)에 관하여"
+tags: ["R", "데이터", "시각화", "bias", "편향"]
+categories: ["오류"]
+
+author: "정종빈"
+date: "2017-01-28T21:23:12-08:00"
+
+draft: true
+mathjax: false
+disqus: true
+
+slug: "혼내면-잘하고-칭찬하면-못한다"
+---
+
+```{r preamble, message=FALSE, warning=FALSE, include=FALSE}
+# Code blocks and messages/warnings are hidden by default
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+
+# Sane figure defaults
+knitr::opts_chunk$set(fig.align = "center")
+knitr::opts_chunk$set(out.width = 500)
+knitr::opts_chunk$set(fig.width = 5)
+knitr::opts_chunk$set(fig.height = 5)
+knitr::opts_chunk$set(fig.retina = 2)
+
+library(xkcd)
+library(tidyverse)
+
+# theme_set(theme_bw())
+theme_update(text=element_text(family="HUJingo340"))
+```
+
+칭찬은 고래도 춤추게 한다는데, 개인적인 경험을 되새겨보면, 내가 칭찬을 들었을
+때도, 남을 칭찬을 때도, 칭찬의 결과로 성과가 좋아지는 경우도 있지만, 칭찬 후에 
+성과/행동이 더 나빠는 경우도 있다. 
+실제로, 각종 교사/코치 들의 경험담을 들어보면, "잘해서 칭찬해주면, 보통 다음 
+번에는 안하던 실수도 막 하는데, 잘못했을 때 한 번 호되게 혼내고 나면, 정신 
+바짝차리고 그 다음 번에는 잘하더라"는 식의 이야기를 많이 한다.
+
+사실, 직접 연구를 해보지도, 출판 책을 읽어보지도 않아서, 정말로 칭찬을 
+하면 고래가 춤을 추는지 어쩌는지는 잘 모르겠다.
+하지만, "칭찬을 하고 나면 정신이 흐려져서 실수를 하고, 혼나고 나면 정신을 바짝
+차리게 되서 더 잘한다"는 식의 생각은 자연의 섭리, 그리고 기본적인 통계를
+바로 이해하지 못한 데서 비롯되는 것 같아, 잠깐 얘기해보고 싶다. 
