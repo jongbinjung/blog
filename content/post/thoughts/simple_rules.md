@@ -1,9 +1,9 @@
 +++
-draft = true
+draft = false
 description = "데이터로부터 추출한 간단한 규칙이 보다 나은 의사결정에 도움이 된다"
 mathjax = false
 categories = ["잡담"]
-disqus = false
+disqus = true
 slug = "simple-rules"
 tags = [
   "의사결정",
