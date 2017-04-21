@@ -2,9 +2,7 @@
 description = ""
 draft = true
 disqus = false
-categories = [""]
+categories = ["잡담"]
 tags = ["", ""]
 mathjax = false
-
-slug = ""
 +++
