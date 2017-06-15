@@ -2,10 +2,10 @@
 draft = false
 date = "2017-02-22T16:43:10-08:00"
 title = "편집기(vim) 자동설정"
-description = "문서 설정이나 스타일 가이드가 다른 여러 개의 프로젝트에 참여 \
-  할 때 .editorconfig를 이용해서 설정을 관리하는 방법을 소개한다. \
-  특히, vim을 이용할 때 PEP8, Makefile 등 다른 설정을 요구하는 파일 편집을 \
-  위한 기본 설정을 소개한다."
+description = """문서 설정이나 스타일 가이드가 다른 여러 개의 프로젝트에 참여 
+  할 때 .editorconfig를 이용해서 설정을 관리하는 방법을 소개한다. 
+  특히, vim을 이용할 때 PEP8, Makefile 등 다른 설정을 요구하는 파일 편집을 
+  위한 기본 설정을 소개한다."""
 mathjax = false
 tags = [
   "설정",

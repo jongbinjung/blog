@@ -10,7 +10,7 @@ tags = [
   "설정",
 ]
 title = "리눅스에서 Box 계정 사용하기"
-draft = true
+draft = false
 slug = "mount-box-on-fedora"
 categories = ["사용설명서"]
 disqus = true
