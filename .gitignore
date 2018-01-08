@@ -1,9 +1,5 @@
 public/
-blog.jongbin.com/
-last_deploy
 
 # R-related auto-generated contents
 .Rproj.user/
-content/post/rmd/*
-static/img/posts/R/*
 .Rproj.user
