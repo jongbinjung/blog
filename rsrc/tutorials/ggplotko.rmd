@@ -1,6 +1,5 @@
 ---
 title: "ggplot2 한글 폰트 설정"
-description: "ggplot2를 이용할 때 한글 폰트를 설정하는 방법"
 tags: ["R", "데이터", "시각화", "ggplot", "한글", "폰트"]
 categories: ["사용설명서"]
 
@@ -32,6 +31,8 @@ theme_set(theme_bw())
 [ggplot2](http://ggplot2.org)만한게 없다.
 연구든, 일이든, 발표든, 늘 그래프를 그릴 일이 있을 때면 ggplot2를 문제 없이 잘
 쓰다가, 한글로 블로그질을 하려니까 폰트가 도무지 봐줄 수 없는거라.
+
+<!--more-->
 
 ```{r bad Korean font example, echo=FALSE, message=FALSE, warning=FALSE}
 unemploy <- read_csv('../../data/korean_unemploy.csv') %>%
