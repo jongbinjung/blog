@@ -1,7 +1,7 @@
 ---
 title: ""
 description: ""
-tags: ["R", "데이터", "시각화", ""]
+tags: ["R", ""]
 categories: [""]
 
 author: "정종빈"
@@ -32,3 +32,5 @@ library(tidyverse)
 theme_set(theme_bw())
 theme_update(text=element_text(family="HUJingo340"))
 ```
+
+<!--more-->

@@ -1,9 +1,13 @@
 +++
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+date: {{ .Date }}
+
 description = ""
 draft = true
-disqus = false
 categories = [""]
 tags = ["", ""]
+
+disqus = false
 mathjax = false
 
 slug = ""
