@@ -1,10 +1,6 @@
-[![Build
-Status](https://travis-ci.org/jongbinjung/blog.svg?branch=master)](https://travis-ci.org/jongbinjung/blog)
-
-Source code for generating and maintaining my [blog](http://blog.jongbin.com).
+Source code for generating and maintaining my [blog](https://blog.jongbin.com).
 The static content of the blog is generated using `hugo`, and is hosted
-separately [here](https://github.com/jongbinjung/jongbinjung.github.io):
-https://github.com/jongbinjung/jongbinjung.github.io
+separately via [Netlify](https://netlify.com).
 
 # Basic usage
 
@@ -51,11 +47,7 @@ the `test.sh` script.
 
 # Deploying the blog
 
-The `deploy.sh` script is setup to
-
-1. compile a latest production version of the blog in `blog.jongbin.com/`
-1. push changes (including change logs from this repo) to the
-[hosting repo on github](https://github.com/jongbinjung/jongbinjung.github.io)
+Deployed via [Netlify](https://netlify.com).
 
 # Directory structure
 
