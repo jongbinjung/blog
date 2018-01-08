@@ -1,4 +1,4 @@
-baseurl = "http://blog.jongbin.com/"
+baseurl = "https://blog.jongbin.com/"
 title = "1024"
 copyright = "&copy; 2016 Jongbin Jung"
 paginate = 3
