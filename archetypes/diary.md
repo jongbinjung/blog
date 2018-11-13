@@ -2,8 +2,6 @@
 title =  "{{ replace .TranslationBaseName "-" " " | title }}"
 date =  {{ .Date }}
 
-description = ""
-
 draft = false
 
 categories = ["일기"]
