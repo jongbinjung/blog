@@ -31,9 +31,9 @@ theme_update(text=element_text(family="HUJingo340"))
 ```
 
 ```{r read data}
-unemploy <- read_csv('../../data/korean_unemploy.csv') %>%
+unemploy <- read_csv('../data/korean_unemploy.csv') %>%
   gather(date, rate, -sex) %>%
-  mutate(date=as.Date(paste(date, '1'), '%Y. %m %d'), rate=rate/100) 
+  mutate(date=as.Date(paste(date, '1'), '%Y. %m %d'), rate=rate/100)
 
 unemploy_total <- unemploy %>%
   filter(sex == 'total')
@@ -44,7 +44,7 @@ presidents <- tibble(
   label=c('김대중', '노무현', '이명박', '박근혜')
 )
 
-demographics <- read_csv("../../data/working_demographics.csv") %>%
+demographics <- read_csv("../data/working_demographics.csv") %>%
   gather(cat, value, -age, -date) %>%
   separate(cat, c('cat', 'unit'), sep='_') %>%
   filter(!(age %in% c('60-64', '65--')), unit == 'thousand') %>%
@@ -67,13 +67,13 @@ fitmodel <- function(df, formula) {
 }
 ```
 
-얼마전 [ggplot에서 한글 폰트 관련 글]({{< relref "post/rmd/tutorials/ggplotko.md" >}})을 
+얼마전 [ggplot에서 한글 폰트 관련 글]({{< relref "/post/rmd/tutorials/ggplotko.md" >}})을
 쓰면서 예제로 통계정이 발표한 월간 실업률 자료를 이용했는데, 통계청에서 공개한
 데이터를 있는 그대로 봐서는 별 의미가 없는 것 같아서, 더 분석해 보고자 한다.
 
 ```{r motivation, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(unemploy_total, aes(x=date, y=rate)) +
-  geom_vline(data=presidents, aes(xintercept=as.numeric(date)), 
+  geom_vline(data=presidents, aes(xintercept=as.numeric(date)),
              linetype='dashed', color='grey70') +
   geom_line() +
   geom_text(data=presidents, aes(x=midterm, y=0.065, label=label),
@@ -82,8 +82,8 @@ ggplot(unemploy_total, aes(x=date, y=rate)) +
           '실업률 변화 추이 - 자료: 통계청(http://kosis.kr/)') +
   scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
-  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
-        legend.background=element_blank(), legend.box.just='center', 
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95),
+        legend.background=element_blank(), legend.box.just='center',
         text=element_text(family="HUJingo320"),
         plot.title = element_text(family="HUJingo340"),
         plot.subtitle = element_text(family="HUIncludemyungjo120"))
@@ -94,7 +94,7 @@ ggplot(unemploy_total, aes(x=date, y=rate)) +
 - 90년대말 경제위기의 영향인지, 2000년대 초반에 실업률이 상대적으로 높았다
 - 매년초에는 실업률이 오른다
 
-2000년대 초반에 아주 높았던 부분은 제외하고, 2003년 이후만 보자. 
+2000년대 초반에 아주 높았던 부분은 제외하고, 2003년 이후만 보자.
 
 ```{r filter years, echo=FALSE, message=FALSE, warning=FALSE}
 plot_presidents <- presidents %>%
@@ -112,7 +112,7 @@ plot_years <- unemploy_total %>%
   do(fitmodel(., formula=rate ~ year))
 
 ggplot(plot_years, aes(x=date, y=rate)) +
-  geom_vline(data=plot_presidents, aes(xintercept=as.numeric(date)), 
+  geom_vline(data=plot_presidents, aes(xintercept=as.numeric(date)),
              linetype='dashed', color='grey70') +
   geom_text(data=plot_presidents, aes(x=midterm, y=0.055, label=label),
             hjust=0.5, vjust=0, nudge_x=50, family="HUIncludemyungjo130") +
@@ -121,8 +121,8 @@ ggplot(plot_years, aes(x=date, y=rate)) +
   geom_step(aes(y=fit), color='blue') +
   scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
-  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
-        legend.background=element_blank(), legend.box.just='center', 
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95),
+        legend.background=element_blank(), legend.box.just='center',
         text=element_text(family="HUJingo320"))
 ```
 
@@ -130,10 +130,10 @@ ggplot(plot_years, aes(x=date, y=rate)) +
 plot_data <- unemploy_total %>%
   filter(date >= '2003/1/1') %>%
   mutate(year=format(date, '%Y'), month=months(date)) %>%
-  do(fitmodel(., formula=rate ~ year + month)) 
+  do(fitmodel(., formula=rate ~ year + month))
 
 ggplot(plot_data, aes(x=date, y=rate)) +
-  geom_vline(data=plot_presidents, aes(xintercept=as.numeric(date)), 
+  geom_vline(data=plot_presidents, aes(xintercept=as.numeric(date)),
              linetype='dashed', color='grey70') +
   geom_text(data=plot_presidents, aes(x=midterm, y=0.055, label=label),
             hjust=0.5, vjust=0, nudge_x=50, family="HUIncludemyungjo130") +
@@ -142,8 +142,8 @@ ggplot(plot_data, aes(x=date, y=rate)) +
   geom_line(aes(y=fit), color='blue') +
   scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
-  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
-        legend.background=element_blank(), legend.box.just='center', 
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95),
+        legend.background=element_blank(), legend.box.just='center',
         text=element_text(family="HUJingo320"))
 ```
 
@@ -156,8 +156,8 @@ ggplot(plot_data, aes(x=date, y=rate)) +
   geom_smooth(formula=y ~ x, method='loess') +
   scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
-  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
-        legend.background=element_blank(), legend.box.just='center', 
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95),
+        legend.background=element_blank(), legend.box.just='center',
         text=element_text(family="HUJingo320"))
 ```
 
@@ -167,5 +167,5 @@ ggplot(plot_data, aes(x=date, y=rate)) +
 
 ```{r init}
 # Total employment and unemployment vary throughout the year. For example, higher unemployment in January and February isn't uncommon because of work in agriculture, construction and other seasonal industries slowing down. Also, both employment and unemployment rise every June, when students enter the labor force in search of summer jobs. Seasonally adjusted numbers also take into account seasonal hiring/layoff patterns that go along with winter and summer holidays.
-  
+
 ```

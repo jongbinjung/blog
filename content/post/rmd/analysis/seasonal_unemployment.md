@@ -20,7 +20,7 @@ slug: "seasonal-unemployment"
 
 
 
-얼마전 [ggplot에서 한글 폰트 관련 글]({{< relref "post/rmd/tutorials/ggplotko.md" >}})을 
+얼마전 [ggplot에서 한글 폰트 관련 글]({{< relref "/post/rmd/tutorials/ggplotko.md" >}})을
 쓰면서 예제로 통계정이 발표한 월간 실업률 자료를 이용했는데, 통계청에서 공개한
 데이터를 있는 그대로 봐서는 별 의미가 없는 것 같아서, 더 분석해 보고자 한다.
 
@@ -31,7 +31,7 @@ slug: "seasonal-unemployment"
 - 90년대말 경제위기의 영향인지, 2000년대 초반에 실업률이 상대적으로 높았다
 - 매년초에는 실업률이 오른다
 
-2000년대 초반에 아주 높았던 부분은 제외하고, 2003년 이후만 보자. 
+2000년대 초반에 아주 높았던 부분은 제외하고, 2003년 이후만 보자.
 
 
 

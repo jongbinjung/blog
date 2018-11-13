@@ -27,7 +27,7 @@ library(extrafont)
 theme_set(theme_bw())
 ```
 
-데이터를 바탕으로 한 "의미있는" 그래프를 그리고자 할 때는 역시 R의 
+데이터를 바탕으로 한 "의미있는" 그래프를 그리고자 할 때는 역시 R의
 [ggplot2](http://ggplot2.org)만한게 없다.
 연구든, 일이든, 발표든, 늘 그래프를 그릴 일이 있을 때면 ggplot2를 문제 없이 잘
 쓰다가, 한글로 블로그질을 하려니까 폰트가 도무지 봐줄 수 없는거라.
@@ -35,9 +35,9 @@ theme_set(theme_bw())
 <!--more-->
 
 ```{r bad Korean font example, echo=FALSE, message=FALSE, warning=FALSE}
-unemploy <- read_csv('../../data/korean_unemploy.csv') %>%
+unemploy <- read_csv('../data/korean_unemploy.csv') %>%
   gather(date, rate, -sex) %>%
-  mutate(date=as.Date(paste(date, '1'), '%Y. %m %d'), rate=rate/100) 
+  mutate(date=as.Date(paste(date, '1'), '%Y. %m %d'), rate=rate/100)
 
 presidents <- tibble(
   date=as.Date(c('1998/2/25', '2003/2/25', '2008/2/25', '2013/2/25')),
@@ -46,10 +46,10 @@ presidents <- tibble(
 )
 
 p <- ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
-  geom_vline(data=presidents, aes(xintercept=as.numeric(date)), 
+  geom_vline(data=presidents, aes(xintercept=as.numeric(date)),
              linetype='dashed', color='grey70') +
   geom_line() +
-  # scale_color_manual('성별', 
+  # scale_color_manual('성별',
   #                      breaks=c('female', 'male', 'total'),
   #                      values=c('grey50', 'grey50', 'black'),
   #                      labels=c('여자', '남자', '계')) +
@@ -63,7 +63,7 @@ p <- ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
           '실업률 변화 추이 - 자료: 통계청(http://kosis.kr/)') +
   scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
-  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95),
         legend.background=element_blank(), legend.box.just='center')
 p
 ```
@@ -74,7 +74,7 @@ p
 
 ```{r good Korean font example, echo=FALSE, message=FALSE, warning=FALSE}
 q <- ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
-  geom_vline(data=presidents, aes(xintercept=as.numeric(date)), 
+  geom_vline(data=presidents, aes(xintercept=as.numeric(date)),
              linetype='dashed', color='grey70') +
   geom_line() +
   geom_text(data=presidents, aes(x=midterm, y=0.065, label=label),
@@ -83,8 +83,8 @@ q <- ggplot(unemploy %>% filter(sex == 'total'), aes(x=date, y=rate)) +
           '실업률 변화 추이 - 자료: 통계청(http://kosis.kr/)') +
   scale_y_continuous('실업률\n', labels=scales::percent) +
   scale_x_date('\n연도', date_breaks='2 years', date_labels='%Y') +
-  theme(legend.justification=c(1, 1), legend.position=c(.95,.95), 
-        legend.background=element_blank(), legend.box.just='center', 
+  theme(legend.justification=c(1, 1), legend.position=c(.95,.95),
+        legend.background=element_blank(), legend.box.just='center',
         text=element_text(family="HUJingo320"),
         plot.title = element_text(family="HUJingo340"),
         plot.subtitle = element_text(family="HUIncludemyungjo120"))
@@ -95,16 +95,16 @@ q
 # 기본 설정
 
 우선, 사용하고자 하는 폰트가 시스템에 설치 되어있다고 가정한다.
-참고로, 위 예제에서 사용된 폰트는 [헤움디자인](http://heumm.com/)에서 무료로 
+참고로, 위 예제에서 사용된 폰트는 [헤움디자인](http://heumm.com/)에서 무료로
 배포하는 [헤움담은명조](http://www.heumm.com/bbs/board.php?bo_table=download&wr_id=28170)와
-[헤움진고딕v3](http://www.heumm.com/bbs/board.php?bo_table=download&wr_id=26926)이다(회원가입 
+[헤움진고딕v3](http://www.heumm.com/bbs/board.php?bo_table=download&wr_id=26926)이다(회원가입
 및 로그인 필요).
 
 # R 작업환경으로 폰트 읽어오기
 
 폰트를 사용하기 위해서는, R 내에서 폰트의 존재를 알릴 필요가 있다.
 보통은 다소 복잡한 과정을 거치지만, [extrafont]( https://cran.r-project.org/web/packages/extrafont/README.html)
-라이브러리를 이용하면 보다 편하게 시스템 폰트를 불러올 수 있다. 
+라이브러리를 이용하면 보다 편하게 시스템 폰트를 불러올 수 있다.
 (2016년 12월 현재, 아직은 ttf  폰트만 지원된다고 함)
 
 R 작업환경으로 폰트를 불러오는 작업은 한 기기당 한 번만 하면 된다.
@@ -118,9 +118,9 @@ library(extrafont)
 ```
 
 extrafont 라이브러리를 설치하고 불러온 후에는, `font_import()` 기능을 이용해서
-원하는 폰트를 읽으면 된다. 
+원하는 폰트를 읽으면 된다.
 (적어도 내가 느끼기에) 가장 빠르고 편한 방법은, `pattern` 옵션을 이용해서 원하는
-폰트를 찾아서 읽어오는 방법이다. 
+폰트를 찾아서 읽어오는 방법이다.
 
 예를 들어, 폰트 이름이 HUJingo로 시작되는 헤움진고딕 폰트들을 읽어오고 싶다면
 
@@ -135,8 +135,8 @@ font_import(pattern = 'HUJingo')
 
 # ggplot2에서 폰트 설정
 
-폰트를 읽어왔다면, ggplot2에서 폰트 설정은, `theme` 혹은 각 `geom_*`의 
-`family` 옵셔을 활용한다. 
+폰트를 읽어왔다면, ggplot2에서 폰트 설정은, `theme` 혹은 각 `geom_*`의
+`family` 옵셔을 활용한다.
 
 ```{r basic}
 df <- data.frame(
@@ -147,11 +147,11 @@ df <- data.frame(
 
 ggplot(data=df, aes(x, y)) +
   geom_text(aes(label = text), vjust="inward", hjust="inward") +
-  ggtitle('예제의 제목 - 못생긴 기본 폰트', 
+  ggtitle('예제의 제목 - 못생긴 기본 폰트',
           '예제의 소제목')
 ```
 
-예를 들어, ggplot2가 만드는 모든 그래프의 기본 폰트를 바꾸고 싶으면 
+예를 들어, ggplot2가 만드는 모든 그래프의 기본 폰트를 바꾸고 싶으면
 `theme_update()`를 이용해서 기본 설정을 바꾼다.
 `theme_update()`를 적용한 시점 이후의 모든 그래프는 해당 테마가 적용된다.
 
@@ -160,7 +160,7 @@ theme_update(text=element_text(family="HUJingo340"))
 
 ggplot(data=df, aes(x, y)) +
   geom_text(aes(label = text), vjust="inward", hjust="inward") +
-  ggtitle('예제의 제목 - HUJingo340 기본 폰트', 
+  ggtitle('예제의 제목 - HUJingo340 기본 폰트',
           '예제의 소제목')
 ```
 
@@ -170,18 +170,18 @@ ggplot(data=df, aes(x, y)) +
 ggplot(data=df, aes(x, y)) +
   geom_text(aes(label = text), vjust="inward", hjust="inward",
             family="HUIncludemyungjo140") +
-  ggtitle('예제의 제목 - HUJingo340 기본 폰트', 
+  ggtitle('예제의 제목 - HUJingo340 기본 폰트',
           '예제의 소제목')
 ```
 
-제목/소제목/축이름 등 `geom_*` 외의 텍스트 일반적으로 
+제목/소제목/축이름 등 `geom_*` 외의 텍스트 일반적으로
 [`theme()`](http://docs.ggplot2.org/current/theme.html)을 통해 조율 가능하다:
 
 ```{r theme family mapping}
 ggplot(data=df, aes(x, y)) +
   geom_text(aes(label = text), vjust="inward", hjust="inward",
             family="HUIncludemyungjo140") +
-  ggtitle('예제의 제목 - HUJingo340 기본 폰트', 
+  ggtitle('예제의 제목 - HUJingo340 기본 폰트',
           '예제의 소제목 - 변경: HUIncludemyunjo140') +
   theme(plot.subtitle=element_text(family="HUIncludemyungjo140"))
 ```

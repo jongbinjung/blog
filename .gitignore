@@ -3,3 +3,5 @@ public/
 # R-related auto-generated contents
 .Rproj.user/
 .Rproj.user
+
+*.swp

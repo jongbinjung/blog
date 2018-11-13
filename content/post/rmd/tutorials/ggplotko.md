@@ -48,7 +48,7 @@ slug: "ggplot2-korean-font"
 R 작업환경으로 폰트를 불러오는 작업은 한 기기당 한 번만 하면 된다.
 
 
-```
+```r
 # 최초 라이브러리 설치
 install.packages('extrafont')
 
@@ -64,7 +64,7 @@ extrafont 라이브러리를 설치하고 불러온 후에는, `font_import()` �
 예를 들어, 폰트 이름이 HUJingo로 시작되는 헤움진고딕 폰트들을 읽어오고 싶다면
 
 
-```
+```r
 font_import(pattern = 'HUJingo')
 ```
 
@@ -79,7 +79,7 @@ font_import(pattern = 'HUJingo')
 `family` 옵셔을 활용한다.
 
 
-```
+```r
 df <- data.frame(
   x = c(1, 2, 1, 2, 1.5),
   y = c(1, 1, 2, 2, 1.5),
@@ -99,7 +99,7 @@ ggplot(data=df, aes(x, y)) +
 `theme_update()`를 적용한 시점 이후의 모든 그래프는 해당 테마가 적용된다.
 
 
-```
+```r
 theme_update(text=element_text(family="HUJingo340"))
 
 ggplot(data=df, aes(x, y)) +
@@ -113,7 +113,7 @@ ggplot(data=df, aes(x, y)) +
 각 `geom_*`의 폰트는 보통 `family` 매핑으로 조절 가능하다:
 
 
-```
+```r
 ggplot(data=df, aes(x, y)) +
   geom_text(aes(label = text), vjust="inward", hjust="inward",
             family="HUIncludemyungjo140") +
@@ -127,7 +127,7 @@ ggplot(data=df, aes(x, y)) +
 [`theme()`](http://docs.ggplot2.org/current/theme.html)을 통해 조율 가능하다:
 
 
-```
+```r
 ggplot(data=df, aes(x, y)) +
   geom_text(aes(label = text), vjust="inward", hjust="inward",
             family="HUIncludemyungjo140") +
