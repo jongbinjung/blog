@@ -14,7 +14,7 @@ slug = "leaving-facebook"
 
 {{< figure
   src="/img/posts/leaving-facebook.jpg"
-  caption="http://www.cultureglaze.com 이미지"
+  caption="https://www.cultureglaze.com 이미지"
 >}}
 
 오랜(약 한 시간) 고민 끝에, 페이스북을 떠나기로 했다.
