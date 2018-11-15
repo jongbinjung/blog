@@ -5,9 +5,9 @@ date =  {{ .Date }}
 draft = false
 
 categories = ["일기"]
-tags = ["", ""]
+tags = [""]
 
-disqus = false
+disqus = true
 mathjax = false
 
 +++
