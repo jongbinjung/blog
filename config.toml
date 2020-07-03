@@ -1,8 +1,9 @@
 baseurl = "https://blog.jongbin.com/"
 title = "1024"
 copyright = "&copy; 2016 Jongbin Jung"
-paginate = 3
-theme = "base16"
+paginate = 10
+# theme = "base16"
+theme = "paper"
 
 # Language settings
 languageCode = "ko-KR"
@@ -21,7 +22,13 @@ FootnoteReturnLinkContents = "↩"
 
 [params]
   author = "정종빈"
+  github = "https://github.com/jongbinjung"
+  iconTitles = ["Github"]
 
 [permalinks]
   post = "/:year/:month/:slug/"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
