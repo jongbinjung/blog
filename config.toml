@@ -7,6 +7,7 @@ theme = "paper"
 
 # Language settings
 languageCode = "ko-KR"
+DefaultContentLanguage = "ko"
 hasCJKLanguage = true
 
 # Enable codefence highlighting
@@ -19,6 +20,10 @@ disqusShortname = "jongbin"
 googleAnalytics = "UA-88094548-1"
 
 FootnoteReturnLinkContents = "↩"
+
+[[menu.main]]
+  name = "태그"
+  url = "/tags"
 
 [params]
   author = "정종빈"
